@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>My page title</title>
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script type="text/javascript" src="Communes34.js"></script>
+   
+
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body>
+    <div id="entete">
+<h1>Bienvenu sur l'interface Tsunami POWER</h1>
+</div>
+
+<div id="main">
+ <div id="input">
+ <form action="">
+  Pays: <input type="text" name="pays"><br>
+  ville:<input type="text" name="ville"><br>
+   Minmagnitude: <input type="text" name="minmag"><br>
+				
+  <input type="submit" value="Rechercher">
+</form> 
+   
+ </div>
+
+ <div id="contenu">
+
+	<body onload="initialize();">
+		<div id="mymap" style="position: absolute;top: 0;left: 0;width: 900px;height: 500px;;"></div>
+		<script>
+		function initialize() {
+		
+			// Création d'un point sur Montpellier
+			var point = new L.LatLng(43.61, 3.87);
+	
+			// Définition des options de la carte
+			var options =	{
+				center: point,
+				zoom: 15
+			};
+			var map = new L.Map('mymap', options);
+			
+			// Ajout d'un fond de carte OpenStreetMap
+			var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
+			var osm = new L.TileLayer(url, {maxZoom: 18}); 
+			map.addLayer(osm);
+			
+			// Ajout d'un marqueur sur Montpellier
+			var marker = new L.Marker(point);
+			marker.bindPopup("Montpellier");
+			map.addLayer(marker); 
+			
+			// Définition d'une symbologie
+			var myStyle = {
+				"color": "#9932CC",
+				"weight": 3,
+				"opacity": 0.85
+			};
+			
+			// Ajout d'une couche Geojson à la carte
+			L.geoJson(com34,{
+				style: myStyle
+			}).addTo(map);
+
+		}
+		</script>	
+
+ </div>
+</div>
+
+<div id="footer">
+tsunami power
+</div>
+
+  </body>
+</html>
