@@ -5,8 +5,8 @@ Outil de gestion de crise géolocalisée.
 
 
 ## API avec des données cartographiques
-	Source des données variées. 
-	Sortie sur openstreetmap. 
+	Source de données hétérogènes. 
+	Sortie sur leaflet. 
 ## Retour utilisateurs
 	Interviews sur la gestion de crise (Université, préfecture de Hérault, mairie ...)
 ## Mashup
