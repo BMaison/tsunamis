@@ -1,12 +1,12 @@
 function initialize() {
 
-	var tabCoord=[[46.079722, 6.401389],[45,6],[47.466702,0.7],[43.787222,-1.403056],[46.53972,2.43028]]
+	var markers = [[17, -75],[15,-76],[17.5,-70],[10,-62],[12,-80]]
 
-	var point = new L.LatLng(18, -72);
+	var centre = new L.LatLng(18, -72);
 
 	// Définition des options de la carte
 	var options =	{
-		center: point,
+		center: centre,
 		zoom: 4
 	};
 	var map = new L.Map('mymap', options);
@@ -16,7 +16,7 @@ function initialize() {
 	var osm = new L.TileLayer(url, {maxZoom: 18}); 
 	map.addLayer(osm);
 	
-	var marker = new L.Marker(point);
+	var marker = new L.Marker(centre);
 	map.addLayer(marker); 
 	marker.bindPopup("Centre");
 	
@@ -28,9 +28,17 @@ function initialize() {
 	circle.bindPopup("Zone Caraïbes");
 
 	// Définition d'une symbologie
-	var myStyle = {
-		"color": "#9932CC",
-		"weight": 3,
-		"opacity": 0.85
-	};
+	var stylepoints = {	
+		radius: 3, 
+		color: "red", 
+		fillOpacity: 0.85
+		};
+
+	for (i=0; i < markers.length; i++) {
+		var lat = markers[i][0];
+		var lng = markers[i][1];
+		var markerLocation = new L.LatLng(lat, lng);
+		var temp = new L.CircleMarker(markerLocation,stylepoints);
+        map.addLayer(temp);
+	}
 }
