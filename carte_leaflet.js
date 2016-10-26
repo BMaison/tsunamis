@@ -1,33 +1,65 @@
-function initialize() {
-
-	var markers = [[17, -75],[15,-76],[17.5,-70],[10,-62],[12,-80]]
-
-	var centre = new L.LatLng(18, -72);
-
-	// Définition des options de la carte
-	var options =	{
-		center: centre,
-		zoom: 4
-	};
-	var map = new L.Map('mymap', options);
+function initialize(pays, ville) {		
 	
-	// Ajout d'un fond de carte OpenStreetMap
-	var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
-	var osm = new L.TileLayer(url, {maxZoom: 18}); 
-	map.addLayer(osm);
+	request = new XMLHttpRequest();
+	var minmag = document.getElementById("minmag").value; 
 	
-	var marker = new L.Marker(centre);
-	map.addLayer(marker); 
-	marker.bindPopup("Centre");
+	console.log(pays + " " + ville + " " + minmag)
 	
-	var circle = L.circle([18, -72], 1500000, {
-		color: 'blue',
-		fillColor: 'blue',
-		fillOpacity: 0.2
-	}).addTo(map);
-	circle.bindPopup("Zone Caraïbes");
+	var result;
+	// haiti port-au-prince
+	fetch('https://nominatim.openstreetmap.org/search?q='+pays+'/'+ville+'&format=json').then(
+		function(response){
+		response.json().then(function(data){
+				init_carte(data);
+			})		
+		}
+	)	
+}
 
-	// Définition d'une symbologie
+function init_carte(data) {
+		
+		longitude = data[0].lon; 
+		lattitude = data[0].lat; 
+		
+		console.log(longitude);
+		console.log(lattitude);
+		
+		var markers = [[17, -75],[15,-76],[17.5,-70],[10,-62],[12,-80]]
+		//var tabCoord=[[46.079722, 6.401389],[45,6],[47.466702,0.7],[43.787222,-1.403056],[46.53972,2.43028]]
+
+		var point = new L.LatLng(lattitude, longitude);
+
+		// Définition des options de la carte
+		var options =	{
+			center: point,
+			zoom: 4
+		};
+		var map = new L.Map('mymap', options);
+		
+		// Ajout d'un fond de carte OpenStreetMap
+		var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
+		var osm = new L.TileLayer(url, {maxZoom: 18}); 
+		map.addLayer(osm);
+		
+		var marker = new L.Marker(point);
+		map.addLayer(marker); 
+		marker.bindPopup("Centre");
+		
+		var circle = L.circle([lattitude, longitude], 1500000, {
+			color: 'blue',
+			fillColor: 'blue',
+			fillOpacity: 0.2
+		}).addTo(map);
+		circle.bindPopup("Zone Caraïbes");
+
+		// Définition d'une symbologie
+		var myStyle = {
+			"color": "#9932CC",
+			"weight": 3,
+			"opacity": 0.85
+		};
+		
+		// Définition d'une symbologie
 	var stylepoints = {	
 		radius: 3, 
 		color: "red", 
