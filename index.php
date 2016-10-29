@@ -9,9 +9,15 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<?php 	
-	$pays = $_GET['pays'];
-	$ville = $_GET['ville'];
-	echo '<body onload=initialize("'.$pays. '","' .$ville.'");>' ; 	
+	if(isset($_GET['pays'])){		
+		$pays = $_GET['pays'];
+		$ville = $_GET['ville'];
+		$minmag = $_GET['minmag'];		
+		echo '<body onload=initialize("'.$pays.'","'.$ville.'","'.$minmag.'");>' ; 
+		
+	}else{ 
+		echo '<body onload=init_carte_empty()>' ; 	
+	}
 	?>	
 		<div id="entete">
 			<button class="button">Home</button>
@@ -22,9 +28,9 @@
 		<div id="main">
 			<div id="input">
 				<form action="" method="GET">
-					Pays: <input type="text" name="pays" id="pays" value="haiti" ><br>
-					ville:<input type="text" name="ville" id="ville" value="port-au-prince"><br>
-					Minmagnitude: <input type="text" name="minmag" id="minmag"><br>			
+					Pays: <input type="text" name="pays" id="pays" value="" ><br>
+					ville:<input type="text" name="ville" id="ville" value=""><br>
+					Minmagnitude: <input type="text" name="minmag" id="minmag" value=""><br>			
 					<input type="submit" value="Rechercher">
 				</form>
 			</div>
