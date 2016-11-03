@@ -15,7 +15,7 @@ function initialize(pays, ville, minmag) {
 }
 // Recupere les seismes
 function seisme(data, minmag) {	
-	fetch('http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm=5000').then(
+	fetch('http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm=1500').then(
 		function(response){
 		response.json().then(function(dataSeisme){			
 				init_carte(data, dataSeisme);
