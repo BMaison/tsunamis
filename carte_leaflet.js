@@ -1,4 +1,8 @@
 function initialize(pays, ville, minmag) {		
+
+var searchLayer = L.geoJson().addTo(map);
+//... adding data in searchLayer ...
+L.map('map', { searchControl: {layer: searchLayer} });
 	
 	//console.log(pays + " " + ville + " " + minmag);
 		
