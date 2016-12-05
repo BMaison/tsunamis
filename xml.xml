@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>	
+<fichier>
+	<moi>
+		<prenom> Habib </prenom>
+		<nom> Diop </nom>
+		<age> 25 </age> 
+		<profession> étudiant </profession>
+		<mail> hgdiop@gmail.com </mail>
+		<portable> 0603318180</portable>
+	</moi>
+	<amis>
+		<ami1>
+			<prenom> Fatima </prenom>
+			<nom> Machou </nom>
+			<age> 22 </age> 
+			<mail> fatima.machou@yahoo.com </mail>
+		</ami1>
+		<ami2>
+			<prenom> Jean </prenom>
+			<nom> Koechlin </nom>
+			<age> 55 </age>
+			<mail> jean.koechlin@free.fr </mail>
+		</ami2>
+		<ami3>
+			<prenom> Blandine </prenom>
+			<nom> Maison </nom>
+			<age> 21 </age> 
+			<profession> étudiante </profession>
+			<mail> blandine.maison@hotmail.com </mail>
+		</ami3>
+	</amis>
+</fichier>
