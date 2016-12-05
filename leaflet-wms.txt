@@ -1,0 +1,8 @@
+Leaflet est en mesure de charger des sources de données depuis un serveur cartographique via le service WMS, il utilise à cette fin TileLayer.WMS.
+
+Nous pouvons remplacer la source de données Geojson par notre source WMS, la déclaration de la source se fait ainsi :
+var wmsDepts = L.tileLayer.wms("http://92.222.27.205/cgi-bin/projet1/qgis_mapserv.fcgi", {
+    layers: 'Departement',
+    format: 'image/png',
+    transparent: true,
+});
