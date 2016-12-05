@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+	<foaf:PERSON>
+		<foaf:familyName>KOECHLIN</foaf:familyName>
+		<foaf:givenName>JEAN</foaf:givenName>
+		<foaf:age>55</foaf:age>
+		<foaf:mbox>jean.koechlin@worldonline.fr</foaf:mbox>
+		<foaf:phone>0670735285</foaf:phone>
+		<foaf:Group>Tsunami</foaf:Group>
+		<foaf:Friend>Blandine Maison</foaf:Friend>
+		<foaf:Friend>Fatima Machou</foaf:Friend>
+		<foaf:Friend>Habib Ghislain</foaf:Friend>
+	</foaf:PERSON>
+	</rdf:RDF>
