@@ -1,0 +1,37 @@
+
+<Informations>
+
+	<Moi>
+			<NOM>machou</NOM>
+			<PRENOM>fatima</PRENOM>
+			<AGE>22</AGE>
+			<MAIL>fatima.machou@yahoo.com</MAIL>
+			<PORTABLE>0695819943</PORTABLE>
+	</Moi>
+  <Listedamis>
+		<Amis1>
+			<NOM>maison</NOM>
+			<PRENOM>blandine</PRENOM>
+			<AGE>21</AGE>
+			<MAIL>blandine.maison@hotmail.com</MAIL>
+			<PORTABLE>0695819943</PORTABLE>
+		</Amis1>
+
+		<Amis2>
+			<NOM>koechelin</NOM>
+			<PRENOM>jean</PRENOM>
+			<AGE>55</AGE>
+			<MAIL>jean.koechelin@free.fr</MAIL>
+		<PORTABLE>0695819943</PORTABLE>
+		</Amis2>
+
+		<Amis3>
+			<NOM>Diop</NOM>
+			<PRENOM>Habib</PRENOM>
+			<AGE>24</AGE>
+			<MAIL>habib.diop@gmail.com</MAIL>
+			<PORTABLE>0695819943</PORTABLE>
+		</Amis3>
+	</Listedamis>
+	
+</Informations>

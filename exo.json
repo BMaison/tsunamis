@@ -1,0 +1,34 @@
+
+
+
+{
+	"moi" : [
+			{"prenom":"fatima",
+			"nom":"MACHOU" ,
+			"age":"22ans" ,
+			"mail":"fatima.mahou@yahoo.com" ,
+			"portable":"0695819943"
+			}
+		    ],
+		
+	"amis": [
+            {"prenom":"blandine" ,
+			"nom":"Maison" ,
+			"age":"21ans" ,
+			"mail":"blandine.maison@hotmail.com" ,
+			"portable":"0695819943"
+			}, 
+            {"prenom":"Jean" , 
+			"nom":"Koechlin" ,
+			"age":"55ans ",
+			"mail":"jean.koechlin@free.fr" ,
+			"portable":"0695819943"
+			}, 
+            {"prenom":"Habib" ,
+		    "nom":"Diop" ,
+			"age":"24ans ",
+			"mail":"habib.diop@tmail.com" ,
+			"portable":"0695819943"
+			}
+            ]
+}

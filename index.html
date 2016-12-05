@@ -1,51 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+<head>
+<meta charset="UTF-8">
+<title>Fatima & Fatima's friends</title>
+</head>
+<body>
 
-    <title>My page title</title>
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-		<script type="text/javascript" src="carte_leaflet.js"></script>
-   
+<script type="text/javascript">
+	
+	
+	var profil = { id : 1, Nom : "MACHOU", Prenom : "Fatima", Age :"22 ans", Email :"Fatima.machou@yahoo.com", friends : [
+{ id : 2, Nom : "Maison", Prenom : "Blandine", Age :"21 ans", Email :"blandine.maison@hotmail.com" },
+{ id : 3, Nom : "Koechlin", Prenom : "Jean", Age :"55 ans", Email :"jean.koechlin@free.com" },
+{ id : 4, Nom : "Diop", Prenom : "Habib", Age :"24 ans", Email :"haib.diop@gmail.com" } ] }
 
-    <link rel="stylesheet" href="style.css">
 
-  </head>
-
-  <body>
-    <div id="entete">
-<button class="button">Home</button>
-<button class="button">Seisme</button>
-<button class="button">Historique</button>
-<button class="button">Contact</button>
-</div>
-
-<div id="main">
- <div id="input">
- <form action="">
-  Pays: <input type="text" name="pays"><br>
-  ville:<input type="text" name="ville"><br>
-   Minmagnitude: <input type="text" name="minmag"><br>
-				
-  <input type="submit" value="Rechercher">
-</form> 
-   
- </div>
-
- <div id="contenu">
-
-	<body onload="initialize();">
-		<div id="mymap" style="position: absolute;top: 0;left: 0;width: 900px;height: 500px;;"></div>
-		
-		
-
- </div>
-</div>
-
-<div id="footer">
-copy right tsunami power
-</div>
-
-  </body>
+	
+</script>
+</body>
 </html>
