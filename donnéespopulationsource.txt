@@ -1,0 +1,5 @@
+var wms = new OpenLayers.Layer.WMS(
+    "Population Density",
+    "http://sedac.ciesin.columbia.edu/geoserver/wms",
+    {layers: 'gpw-v3:gpw-v3-population-density_2000'}
+  );
