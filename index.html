@@ -1,51 +1,111 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
+		<title>Tsunami Power</title>
+		
+		<link rel="icon" type="image/png" href="logo.png" />
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <title>My page title</title>
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Boostrap dépend de Jquery -->
+
+		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 		<script type="text/javascript" src="carte_leaflet.js"></script>
-   
-
-    <link rel="stylesheet" href="style.css">
-
-  </head>
-
-  <body>
-    <div id="entete">
-<button class="button">Home</button>
-<button class="button">Seisme</button>
-<button class="button">Historique</button>
-<button class="button">Contact</button>
-</div>
-
-<div id="main">
- <div id="input">
- <form action="">
-  Pays: <input type="text" name="pays"><br>
-  ville:<input type="text" name="ville"><br>
-   Minmagnitude: <input type="text" name="minmag"><br>
+		<link rel="stylesheet" href="style.css">
+		
+		<!-- Dependance Openlayers -->
+		<script src="http://dev.openlayers.org/OpenLayers.js"></script>	
+		
+		<script>
+		$(document).ready(function(){
+			// Recuperation du nombre d'habitant par ville 
+			/*var wms = new OpenLayers.Layer.WMS( "Population Count",
+			"http://sedac.ciesin.columbia.edu/geoserver/wms",
+			{layers: 'gpw-v4:gpw-v4-population-count_2005'}	); 
+			alert(wms.div);	console.log(wms);*/	
+	
+			//initialise la carte
+			init_carte_empty()
+			//initialize('cuba','la-habana','0.002');
+			
+			$("#recherche").click(function(){
 				
-  <input type="submit" value="Rechercher">
-</form> 
-   
- </div>
-
- <div id="contenu">
-
-	<body onload="initialize();">
-		<div id="mymap" style="position: absolute;top: 0;left: 0;width: 900px;height: 500px;;"></div>
+				// On supprime la carte
+				$( "#mymap" ).remove();
+				
+				// Création de la nouvelle carte
+				$( ".inner" ).append("<div id=\"mymap\" class=\"la-carte\" style=\"position: absolute;top: 0;left: 0;width: 100%;height: 500px;\"></div>");
+				
+				var pays=$('#pays').val();
+				var ville=$('#ville').val();
+				var minmag=$('#minmag').val();
+				
+				//Vérification du formulaire
+				if(!pays){alert('Veuillez entrer un pays'); exit;}
+				if(!ville){alert('Veuillez entrer une ville'); exit;}
+				if(!minmag){alert('Veuillez entrer une magnitude minimale'); exit;}
+				
+				// jeu de test				
+				//initialize('cuba','la-habana','0.002');
+				
+				initialize(pays,ville,minmag);
+			});
+		});
 		
-		
 
- </div>
-</div>
-
-<div id="footer">
-copy right tsunami power
-</div>
-
-  </body>
+		</script>
+	</head>	
+	<body>		
+		<nav class="navbar navbar-default">
+			<div class="container-fluid" style="padding:0px;">
+				<div class="navbar-header"><img src="logo.png" alt="Tsunami predict" height="45px" /></div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html">Séismes</a></li>
+					<!-- <li><a href="#">Tsunami</a></li>
+					<li><a href="#">Historique</a></li> -->
+				</ul>
+			</div>
+		</nav>		
+		<div style ="height:500px;" class="container">
+			<div class="col-xs-6 col-sm-3">				
+					<div class="form-group">
+						<input class="form-control input-sm" placeholder="Pays" type="text" name="pays" id="pays">
+					</div>
+					<div class="form-group">
+						<input class="form-control input-sm" placeholder="Ville" type="text" name="ville" id="ville">
+					</div>
+					<div class="form-group">
+						<input class="form-control input-sm" placeholder="Magnitude minimale" type="text" name="minmag" id="minmag">
+					</div>
+					<button id="recherche" type="submit" class="btn btn-default" style="float:right">Rechercher</button>				
+			</div>		
+			<div class="col-xs-12 col-md-8">
+				<div class="inner">			
+					<div id="mymap" class="la-carte" style="position: absolute;top: 0;left: 0;width: 100%;height: 500px;"></div>
+				</div>
+			</div>
+		</div>		
+		<!-- footer-->
+		<div class="well well-sm">Copyright Tsunami Power</div>
+	</body>
 </html>
+
+<!-- JavaScript pour google-analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88422583-1', 'auto');
+  ga('send', 'pageview');
+</script>

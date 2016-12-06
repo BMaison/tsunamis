@@ -1,11 +1,5 @@
 function initialize(pays, ville, minmag) {		
-
-var searchLayer = L.geoJson().addTo(map);
-//... adding data in searchLayer ...
-L.map('map', { searchControl: {layer: searchLayer} });
-	
-	//console.log(pays + " " + ville + " " + minmag);
-		
+	//console.log(pays + " " + ville + " " + minmag);		
 	request = new XMLHttpRequest();
 	var result;
 	// haiti port-au-prince
@@ -17,9 +11,10 @@ L.map('map', { searchControl: {layer: searchLayer} });
 		}
 	)	
 }
+
 // Recupere les seismes
 function seisme(data, minmag) {	
-	fetch('http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm=1500').then(
+	fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm=1500').then(
 		function(response){
 		response.json().then(function(dataSeisme){			
 				init_carte(data, dataSeisme);
@@ -27,14 +22,15 @@ function seisme(data, minmag) {
 		}
 	)
 }
+
 //Affichage de la carte avec seismes
 function init_carte(data, dataSeisme) {
 		
 		longitude = data[0].lon; 
 		lattitude = data[0].lat; 
 		
-		console.log(dataSeisme);
-		console.log(dataSeisme.features[0]); //affiche le  premier seisme
+		//console.log(dataSeisme);
+		//console.log(dataSeisme.features[0]); //affiche le  premier seisme
 			
 		var point = new L.LatLng(lattitude, longitude);
 
@@ -46,10 +42,10 @@ function init_carte(data, dataSeisme) {
 		var map = new L.Map('mymap', options);
 		
 		// Ajout d'un fond de carte OpenStreetMap
-		var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
+		var url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
 		var osm = new L.TileLayer(url, {maxZoom: 18}); 
 		map.addLayer(osm);
-		
+
 		var marker = new L.Marker(point);
 		map.addLayer(marker); 
 		marker.bindPopup("Centre");
@@ -58,8 +54,7 @@ function init_carte(data, dataSeisme) {
 			color: 'blue',
 			fillColor: 'blue',
 			fillOpacity: 0.2
-		}).addTo(map);
-		circle.bindPopup("Zone Caraïbes");
+		}).addTo(map);		
 
 		// Définition d'une symbologie
 		var myStyle = {
@@ -88,7 +83,6 @@ function init_carte(data, dataSeisme) {
 function init_carte_empty() {
 		
 		var point = new L.LatLng(18, -72);
-
 		
 		// Définition des options de la carte
 		var options =	{
@@ -98,7 +92,7 @@ function init_carte_empty() {
 		var map = new L.Map('mymap', options);
 		
 		// Ajout d'un fond de carte OpenStreetMap
-		var url = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
+		var url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
 		var osm = new L.TileLayer(url, {maxZoom: 18}); 
 		map.addLayer(osm);
 		
@@ -112,7 +106,6 @@ function init_carte_empty() {
 			fillOpacity: 0.2
 		}).addTo(map);
 		circle.bindPopup("Zone Caraïbes");
-		
 
 		// Définition d'une symbologie
 		var myStyle = {
@@ -120,5 +113,4 @@ function init_carte_empty() {
 			"weight": 3,
 			"opacity": 0.85
 		};
-
 }
