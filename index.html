@@ -26,6 +26,9 @@
 		<!-- Dependance Openlayers -->
 		<script src="http://dev.openlayers.org/OpenLayers.js"></script>	
 		
+		<!-- D3.js -->
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		
 		<script>
 		$(document).ready(function(){
 			// Recuperation du nombre d'habitant par ville 
@@ -85,7 +88,10 @@
 						<input class="form-control input-sm" placeholder="Ville" type="text" name="ville" id="ville">
 					</div>
 					<div class="form-group">
-						<input class="form-control input-sm" placeholder="Magnitude minimale" type="text" name="minmag" id="minmag">
+						<input class="form-control input-sm" placeholder="Magnitude minimale (1 - 10)" type="text" name="minmag" id="minmag">
+					</div>
+					<div class="form-group">
+						<input class="form-control input-sm" placeholder="Rayon du cercle (en km)" type="text" name="rayon" id="rayon">
 					</div>
 					<button id="recherche" type="submit" class="btn btn-default" style="float:right">Rechercher</button>				
 			</div>		

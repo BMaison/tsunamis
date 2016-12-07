@@ -14,7 +14,10 @@ function initialize(pays, ville, minmag) {
 
 // Recupere les seismes
 function seisme(data, minmag) {	
-	fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm=1500').then(
+	if(document.getElementById("rayon").value == ""){
+		document.getElementById("rayon").value = 1500;
+	}
+	fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude='+minmag+'&latitude='+data[0].lat+'&longitude='+data[0].lon+'&maxradiuskm='+document.getElementById("rayon").value).then(
 		function(response){
 		response.json().then(function(dataSeisme){			
 				init_carte(data, dataSeisme);
@@ -40,7 +43,7 @@ function init_carte(data, dataSeisme) {
 			zoom: 4
 		};
 		var map = new L.Map('mymap', options);
-		
+
 		// Ajout d'un fond de carte OpenStreetMap
 		var url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
 		var osm = new L.TileLayer(url, {maxZoom: 18}); 
@@ -48,13 +51,12 @@ function init_carte(data, dataSeisme) {
 
 		var marker = new L.Marker(point);
 		map.addLayer(marker); 
-		marker.bindPopup("Centre");
-		
-		var circle = L.circle([lattitude, longitude], 1500000, {
+				
+		var circle = L.circle([lattitude, longitude], document.getElementById("rayon").value*1000, {
 			color: 'blue',
 			fillColor: 'blue',
 			fillOpacity: 0.2
-		}).addTo(map);		
+		}).addTo(map);	
 
 		// Définition d'une symbologie
 		var myStyle = {
@@ -81,21 +83,14 @@ function init_carte(data, dataSeisme) {
 
 //Affichage de la carte vide
 function init_carte_empty() {
-		
+	
 		var point = new L.LatLng(18, -72);
 		
-		// Définition des options de la carte
-		var options =	{
-			center: point,
-			zoom: 4
-		};
-		var map = new L.Map('mymap', options);
+		var map = L.map('mymap').setView([18, -72], 4);
 		
-		// Ajout d'un fond de carte OpenStreetMap
-		var url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'; 
-		var osm = new L.TileLayer(url, {maxZoom: 18}); 
+		var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map); 
 		map.addLayer(osm);
-		
+
 		var marker = new L.Marker(point);
 		map.addLayer(marker); 
 		marker.bindPopup("Centre");
@@ -113,4 +108,55 @@ function init_carte_empty() {
 			"weight": 3,
 			"opacity": 0.85
 		};
+
+		// Add an SVG element to Leaflet’s overlay pane
+		var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+			g = svg.append("g").attr("class", "leaflet-zoom-hide");
+			
+		d3.json("rectangle.json", function(geoShape) {
+		
+		//  create a d3.geo.path to convert GeoJSON to SVG
+		var transform = d3.geo.transform({point: projectPoint}),
+            	path = d3.geo.path().projection(transform);
+ 
+		// create path elements for each of the features
+		d3_features = g.selectAll("path")
+			.data(geoShape.features)
+			.enter().append("path");
+
+		map.on("viewreset", reset);
+
+		reset();
+
+		// fit the SVG element to leaflet's map layer
+		function reset() {
+        
+			bounds = path.bounds(geoShape);
+
+			var topLeft = bounds[0],
+				bottomRight = bounds[1];
+
+			svg .attr("width", bottomRight[0] - topLeft[0])
+				.attr("height", bottomRight[1] - topLeft[1])
+				.style("left", topLeft[0] + "px")
+				.style("top", topLeft[1] + "px");
+
+			g .attr("transform", "translate(" + -topLeft[0] + "," 
+			                                  + -topLeft[1] + ")");
+
+			// initialize the path data	
+			d3_features.attr("d", path)
+				.style("fill-opacity", 0.7)
+				.attr('fill','blue');
+		} 
+
+		// Use Leaflet to implement a D3 geometric transformation.
+		function projectPoint(x, y) {
+			var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+			this.stream.point(point.x, point.y);
+		}
+	})		
 }
+
+
+
