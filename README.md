@@ -12,4 +12,4 @@ Outil de gestion de crise géolocalisée.
 ## Mashup
 	Pour gérer les urgences pour l'utilisateur final (responsable de crise des autorités publiques et des structures privés). 
 ## le lien de notre site
-notre application est accessible sur cette adresse :bmaison.github.io
+notre application est accessible sur cette adresse : bmaison.github.io
