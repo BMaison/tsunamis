@@ -1,0 +1,29 @@
+html{
+	background-color:#C3D5ED;	
+	margin-left:80px;
+	margin-right:80px;	
+}
+body{
+	background-color:#AEC3DD;
+}
+#input{
+	float:left;
+	width:200px;
+	height:500px;
+	margin-left:-15px;
+	background-color:#9BB1CE;
+	padding:5px;
+}
+#contenu{
+	margin-left:185px;
+	background-color:#FFF8DC;
+	width:900px;
+	height:500px;
+	position: absolute;
+	margin-right:90px;
+}
+#cadre{
+	width:900px;
+	height:300px;	
+	left:20px;	
+}
