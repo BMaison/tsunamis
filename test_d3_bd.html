@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>test d3 bd</title>
+  
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+ 
+</head>
+
+<body>
+  <script>
+   d3.json("test_local_bd.json", function(error, data) {
+    data.forEach(function(d) {
+        d.longitude = d.longitude;
+        d.latitude = +d.latitude;
+    });});
+</script>
+</body>
+
+</html>
