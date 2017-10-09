@@ -1,0 +1,13 @@
+request = new XMLHttpRequest(); //chrome, safari ...but not IE
+var result
+fetch('https://nominatim.openstreetmap.org/search?q=haiti/port-au-prince&format=json').then(
+function(response){
+response.json().then(function(data){result = data})
+}
+)
+
+result[0].lat
+result[0].lon
+
+var latitude1 = result[0].lat
+var lontitude1 = result[0].lon
